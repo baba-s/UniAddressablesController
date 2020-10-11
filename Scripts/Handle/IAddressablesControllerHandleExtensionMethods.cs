@@ -20,7 +20,7 @@ namespace Kogane
 		/// </summary>
 		public static void Acquire( this IAddressablesControllerHandle self )
 		{
-			if ( !self.IsValid ) return;
+			//if ( !self.Handle.IsValid() ) return;
 			Addressables.ResourceManager.Acquire( self.Handle );
 		}
 
@@ -29,7 +29,7 @@ namespace Kogane
 		/// </summary>
 		public static void Release( this IAddressablesControllerHandle self )
 		{
-			if ( !self.IsValid ) return;
+			//if ( !self.Handle.IsValid() ) return;
 			Addressables.ResourceManager.Release( self.Handle );
 		}
 	}
