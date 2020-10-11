@@ -132,13 +132,16 @@ using UnityEngine;
 
 public class Example : MonoBehaviour
 {
+    // Addressables を操作するインスタンスを作成します
     private static IAddressablesController CreateController( bool isVirtual )
     {
+        // バーチャルモードの場合
         if ( isVirtual )
         {
             var controller = new VirtualAddressablesController();
             return controller;
         }
+        // バーチャルモードではない場合
         else
         {
             var controller = new AddressablesController
@@ -151,6 +154,7 @@ public class Example : MonoBehaviour
 
     private void Awake()
     {
+        // Addressables を操作するインスタンスを設定します
         MyAddressables.SetController( CreateController( false ) );
     }
 
@@ -161,6 +165,7 @@ public class Example : MonoBehaviour
 
     private async void Hoge()
     {
+        // Addressables を初期化します
         if ( GUILayout.Button( nameof( MyAddressables.InitializeAsync ) ) )
         {
             var handle = MyAddressables.InitializeAsync();
@@ -168,6 +173,7 @@ public class Example : MonoBehaviour
             Debug.Log( handle.ResultCode );
         }
 
+        // 指定されたアドレスもしくはラベルに紐づくアセットバンドルのサイズを取得します
         if ( GUILayout.Button( nameof( MyAddressables.GetDownloadSizeAsync ) ) )
         {
             var handle = MyAddressables.GetDownloadSizeAsync( "hoge" );
@@ -177,6 +183,7 @@ public class Example : MonoBehaviour
             Debug.Log( handle.ResultCode );
         }
 
+        // 指定されたアドレスもしくはラベルに紐づくアセットバンドルを事前にダウンロードします
         if ( GUILayout.Button( nameof( MyAddressables.DownloadDependenciesAsync ) ) )
         {
             var handle = MyAddressables.DownloadDependenciesAsync( "hoge", true );
