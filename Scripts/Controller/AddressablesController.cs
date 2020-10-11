@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -190,7 +190,7 @@ namespace Kogane
 			var result = Addressables.GetDownloadSizeAsync( ( IEnumerable ) addressesOrLabels );
 			result.Completed += handle => OnComplete( handle );
 
-			return new AddressablesControllerHandle<long>( source.Task );
+			return new AddressablesControllerHandle<long>( result, source.Task );
 		}
 
 		/// <summary>
@@ -312,7 +312,7 @@ namespace Kogane
 			var result = Addressables.CheckForCatalogUpdates();
 			result.Completed += handle => OnComplete( handle );
 
-			return new AddressablesControllerHandle<List<string>>( source.Task );
+			return new AddressablesControllerHandle<List<string>>( result, source.Task );
 		}
 
 		/// <summary>
@@ -423,7 +423,7 @@ namespace Kogane
 			var result = Addressables.LoadSceneAsync( address, loadMode );
 			result.Completed += handle => OnComplete( handle );
 
-			return new AddressablesControllerHandle( source.Task );
+			return new AddressablesControllerHandle( result, source.Task );
 		}
 	}
 }
